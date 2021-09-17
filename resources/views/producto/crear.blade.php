@@ -9,5 +9,19 @@
 </head>
 <body>
     <h1>Reguistar producto</h1>
+
+    <form method="post" action="/productos">
+        @csrf
+        <input type="text" name="nombres" placeholder="ingrese sus nombres" value="{{old("nombres")}}">
+
+        <input type="submit" name="submit" value="Guardar">
+    </form>
+    @if($errors->any())
+        <div style="color:red">
+            @foreach($errors->all() as $error)
+                {{$error}}<br>
+            @endforeach
+        </div>
+    @endif
 </body>
 </html>

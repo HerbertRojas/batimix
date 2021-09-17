@@ -26,7 +26,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view("estudiante.crear");
     }
 
     /**
@@ -37,7 +37,14 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nombres" => "required | alpha | unique:productos,nombres",
+        ]);
+
+        $producto = new Producto();
+        $producto->nombres = $request->nombres;
+        $producto->save();
+        return redirect(route("productos.index"));
     }
 
     /**
